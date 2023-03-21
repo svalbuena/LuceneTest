@@ -1,6 +1,7 @@
 package org.example.ch2;
 
 import org.deeplearning4j.models.embeddings.learning.impl.elements.CBOW;
+import org.deeplearning4j.models.embeddings.learning.impl.elements.SkipGram;
 import org.deeplearning4j.models.word2vec.Word2Vec;
 import org.deeplearning4j.text.sentenceiterator.BasicLineIterator;
 import org.deeplearning4j.text.sentenceiterator.SentencePreProcessor;
@@ -26,7 +27,8 @@ public class Word2VecSynonyms {
                 .layerSize(100)
                 .windowSize(5)
                 .iterate(iterator)
-                .elementsLearningAlgorithm(new CBOW<>())
+                //.elementsLearningAlgorithm(new CBOW<>())
+                .elementsLearningAlgorithm(new SkipGram<>())
                 .build();
         vec.fit();
 
