@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Books {
+public class BooksNoSynonyms {
     public static void main(String[] args) throws Exception {
         var path = Paths.get("target/idx/ch2/books");
         var directory = FSDirectory.open(path);

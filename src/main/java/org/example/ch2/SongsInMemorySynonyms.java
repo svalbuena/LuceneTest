@@ -17,7 +17,7 @@ import org.apache.lucene.util.CharsRef;
 
 import java.nio.file.Paths;
 
-public class Songs {
+public class SongsInMemorySynonyms {
     public static void main(String[] args) throws Exception {
         var path = Paths.get("target/idx/ch2/songs");
         var directory = FSDirectory.open(path);
