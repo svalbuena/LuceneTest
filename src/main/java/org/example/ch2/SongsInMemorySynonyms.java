@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 
 public class SongsInMemorySynonyms {
     public static void main(String[] args) throws Exception {
-        var path = Paths.get("target/idx/ch2/songs");
+        var path = Paths.get("target/idx/ch2/songs_in_memoryS");
         var directory = FSDirectory.open(path);
 
         var indexTimeAnalyzer = getIndexTimeSynonymAnalyzer();
