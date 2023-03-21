@@ -12,7 +12,17 @@ import java.util.stream.Stream;
 
 public class Word2VecSynonyms {
     public static void main(String[] args) throws Exception {
-        var filePath = new ClassPathResource("ch2/billboard_lyrics_1964-2015.csv")
+        var word2Vec = getWord2Vec("ch2/billboard_lyrics_1964-2015.csv");
+
+        var words = new String[] {"guitar", "love", "rock"};
+        for (var word : words) {
+            var lst = word2Vec.wordsNearest(word, 2);
+            System.out.println("2 Words closest to '" + word + "': " + lst);
+        }
+    }
+
+    private static Word2Vec getWord2Vec(String filename) throws Exception {
+        var filePath = new ClassPathResource(filename)
                 .getFile()
                 .getAbsolutePath();
 
@@ -23,20 +33,16 @@ public class Word2VecSynonyms {
         // skip csv headers
         iterator.nextSentence();
 
-        var vec = new Word2Vec.Builder()
+        var word2Vec = new Word2Vec.Builder()
                 .layerSize(100)
                 .windowSize(5)
                 .iterate(iterator)
                 //.elementsLearningAlgorithm(new CBOW<>())
                 .elementsLearningAlgorithm(new SkipGram<>())
                 .build();
-        vec.fit();
+        word2Vec.fit();
 
-        var words = new String[] {"guitar", "love", "rock"};
-        for (var word : words) {
-            var lst = vec.wordsNearest(word, 2);
-            System.out.println("2 Words closest to '" + word + "': " + lst);
-        }
+        return word2Vec;
     }
 
     private static String sentencePreProcessor(String sentence) {
