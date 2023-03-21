@@ -1,0 +1,2 @@
+plane,aeroplane,aircraft,airplane
+boat,vessel,ship
